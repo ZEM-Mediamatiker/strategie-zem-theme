@@ -1,5 +1,5 @@
 # strategie-zem-theme
-GRAV Theme for swiss goverment
+GRAV Theme for the Swiss government
 This Grav CMS theme is used for the new website for our boarddirectors.
 
 ##### Plugins to install in order to use the theme:
