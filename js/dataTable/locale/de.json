@@ -1,0 +1,41 @@
+{
+    "sEmptyTable":      "Keine Daten in der Tabelle vorhanden",
+    "sInfo":            "_START_ bis _END_ von _TOTAL_",
+    "sInfoEmpty":       "Keine Daten vorhanden",
+    "sInfoFiltered":    "(gefiltert von _MAX_)",
+    "sInfoPostFix":     "",
+    "sInfoThousands":   ".",
+    "sLengthMenu":      "_MENU_ Massnahmen anzeigen",
+    "sLoadingRecords":  "Wird geladen ..",
+    "sProcessing":      "Bitte warten ..",
+    "sSearch":          "Suchen",
+    "sZeroRecords":     "Keine Massnahmen vorhanden",
+    "oPaginate": {
+        "sFirst":       "Erste",
+        "sPrevious":    "<i class=\"material-icons\">chevron_left</i>",
+        "sNext":        "<i class=\"material-icons\">chevron_right</i>",
+        "sLast":        "Letzte"
+    },
+    "oAria": {
+        "sSortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+        "sSortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+    },
+    "select": {
+        "rows": {
+            "_": "%d Zeilen ausgewählt",
+            "0": "",
+            "1": "1 Zeile ausgewählt"
+        }
+    },
+    "buttons": {
+        "print":    "Drucken",
+        "colvis":   "Spalten",
+        "copy":     "Kopieren",
+        "copyTitle":    "In Zwischenablage kopieren",
+        "copyKeys": "Taste <i>ctrl</i> oder <i>\u2318</i> + <i>C</i> um Tabelle<br>in Zwischenspeicher zu kopieren.<br><br>Um abzubrechen Escape drücken.",
+        "copySuccess": {
+            "_": "%d Spalten kopiert",
+            "1": "1 Spalte kopiert"
+        }
+    }
+}

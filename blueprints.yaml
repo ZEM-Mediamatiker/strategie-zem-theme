@@ -1,0 +1,26 @@
+name: Strategie_ZEM
+slug: strategize_zem
+type: theme
+version: 1.0.0
+description: "Theme für Strategie Zentrum elektronische Medien ZEM"
+icon: empire
+author:
+  name: Lars Heinitz
+  email: zem.medienagentur@vtg.admin.ch
+homepage: https://www.zem.ch
+keywords: minimalist, theme, modern, fast, responsive, html5, css3, zem, strategie
+license: MIT
+
+form:
+  validation: loose
+  fields:
+    dropdown.enabled:
+        type: toggle
+        label: Dropdown in navbar
+        highlight: 1
+        default: 1
+        options:
+          1: Enabled
+          0: Disabled
+        validate:
+          type: bool

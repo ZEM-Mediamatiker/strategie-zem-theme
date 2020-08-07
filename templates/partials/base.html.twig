@@ -1,0 +1,929 @@
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{{ site.title|e('html') }}{% if header.title %}{{ header.title|e('html') }}{% endif %}</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="robots" content="index, follow, noarchive, noodp" />
+
+   <title>Strategie Zentrum elektronische Medien - Aktionsplan</title>
+
+   <meta name="publisher" content="Zentrum elektronische Medien" />
+   <meta name="email" content="info@zem.ch" />
+   <meta name="copyright" content="Zentrum elektronische Medien" />
+   <meta name="description" content="Stand am" />
+   <meta name="author" content="Mediathek Zentrum elektronische Medien ZEM" />
+
+
+   <meta property="og:title" content="Strategie Zentrum elektronische Medien - Aktionsplan" />
+   <meta property="og:description" content="Stand am" />
+   <meta property="og:type" content="article" />
+   <meta property="og:url" content="https://handbuch.zem.ch/zem4/de/aktionsplan.html" />
+   <meta property="og:site_name" content="Strategie Zentrum elektronische Medien" />
+   <meta property="og:image" itemprop="image" content="https://handbuch.zem.ch/zem4/assets/img/site/default_image.jpg" />
+
+   <meta property="fb:pages" content="12345678910" />
+
+
+   <meta name="twitter:card" content="summary_large_image" />
+   <meta name="twitter:title" content="Strategie Zentrum elektronische Medien - Aktionsplan" />
+   <meta name="twitter:description" content="Stand am" />
+   <meta name="twitter:image" content="https://handbuch.zem.ch/zem4/assets/img/site/default_image.jpg" />
+
+
+   <meta itemprop="description" content="Stand am" />
+
+   <meta name="apple-mobile-web-app-title" content="Strategie Zentrum elektronische Medien" />
+   <meta name="application-name" content="Strategie Zentrum elektronische Medien" />
+
+
+   <link rel="shortcut icon" type="image/x-icon" href="/zem04/user/themes/Strategie_ZEM/images/favicon.ico">
+
+
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,800" media="all">
+       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+       <!--Import materialize.css-->
+       <!-- Compiled and minified CSS -->
+       <link rel="stylesheet" href="/zem04/user/themes/Strategie_ZEM/css/datatables.min.css">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+       <!-- <link rel="stylesheet" href="/zem04/user/themes/Strategie_ZEM/css/materialize.css"> -->
+
+       <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+       <script src="https://use.fontawesome.com/e4d9a6b17e.js"></script>
+
+       <!--[if lte IE 8]>
+       <script src="/sites/default/files/js/js_VtafjXmRvoUgAzqzYTA3Wrjkx9wcWhjP0G4ZnnqRamA.js"></script>
+       <![endif]-->
+       <!--Let browser know website is optimized for mobile-->
+       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       <style>
+
+       .row.program-header{
+               width:100%;
+               margin-bottom:0;
+           }
+       .definition{
+           line-height: 1.75em;
+       }
+
+        a.af-card{
+           border: 3px solid #fff;
+           background:transparent;
+           display:block;
+           color:white;
+             -webkit-transition-duration: .3s; /* Safari */
+             transition-duration: .3s;
+
+       }
+
+       a.af-card:hover{
+           background: white;
+           color: #10373F;
+       }
+       .hero a.text-white:hover{
+           color: #10373F !important;
+           transition: .3s;
+       }
+
+       .text-semi-bold{
+           font-weight:600;
+       }
+
+        table.dataTable>tbody>tr {
+               transition: .6s background;
+               cursor: pointer;
+           }
+
+           table.dataTable>tbody>tr.dtrg-group{
+               cursor: auto;
+           }
+
+         table.dataTable td{
+             font-size: 16px;
+             border-radius:0;
+         }
+
+         table.dataTable td.td10{
+             width:7%;
+             min-width:70px;
+         }
+
+         table.dataTable td.td5{
+             width:3%;
+             min-width:30px;
+         }
+
+         th.zem-spalte1{
+               width:40%;
+               min-width:200px;
+           }
+
+           th.zem-spalten{
+               width:5%;
+               min-width:10px;
+           }
+
+           td.spalten{
+             text-align: center;
+           }
+
+           table.dataTable thead{
+               display: none;
+           }
+         /*
+         table.dataTable th{
+             border-radius: 0;
+               font-size: 14px;
+               font-weight: 200 !important;
+               color: gray;
+         }
+           */
+
+         table.dataTable tbody>tr>td {
+               line-height: 1.2em;
+               padding: 16px 10px;
+               vertical-align:baseline;
+               border-bottom: 1px solid rgba(0, 0, 0, 0.12)
+           }
+
+           table.dataTable tbody>tr>td.valign-top{
+               vertical-align:top;
+           }
+
+
+
+           table.dataTable p {
+               line-height: 1.75em;
+               white-space: pre-line;
+               /*special actionplan*/
+               margin-top: 0;
+               margin-bottom:1.5rem;
+           }
+
+           table.dataTable tbody tr.dtrg-group.dtrg-start td {
+               background: #ffffff;
+               border: none;
+               padding:.6rem;
+               /*border-bottom: 1px solid #305765;*/
+               /*font-weight:700;*/
+           }
+
+           table.dataTable tbody tr.dtrg-group.dtrg-start.dtrg-level-0 td{
+               color: #305765;
+               padding-top: 20px;
+               padding-bottom: 20px;
+               font-size: 1.5rem;
+
+           }
+
+           table.dataTable tbody tr.dtrg-group.dtrg-start.dtrg-level-1 td{
+               /*font-size: 75% !important;*/
+               font-weight:600;
+               border-bottom: 1px solid #305765;
+           }
+
+
+           table.dataTable tr.dtrg-group.dtrg-end td {
+               background: white;
+               /*font-size: 8px;*/
+               text-align: right;
+               font-weight: normal;
+               color: #e0e0e0;
+               padding-bottom: 10px;
+               border:none;
+               /*border-top: 1px solid #aeb2b6;*/
+           }
+
+
+           table.dataTable tbody td.small {
+                 color: grey;
+                 font-size: .9rem;
+                 max-width: 100px;
+                 text-overflow: ellipsis;
+                 white-space: nowrap;
+                 overflow: hidden;
+                 font-weight:300;
+               }
+
+
+
+           table.dataTable tbody td.child .small {
+             color: #a8a8a6;
+           }
+           table.dataTable tbody td.child {
+             border: none;
+             border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+             padding-top: 7px;
+           }
+
+           table.dataTable tbody tr.parent td {
+               border-bottom: none;
+           }
+
+           table.dataTable tbody tr.parent:hover{
+             background: white;
+           }
+
+           table.dataTable tbody tr.parent td.title{
+             font-weight: bold;
+           }
+
+
+
+           table.inner-table tr{
+               border: none !important;
+               cursor: text;
+           }
+
+           table.inner-table tr td {
+               background: white;
+             border: none !important;
+             padding: 4px 20px 4px 0 !important;
+                font-size: .95rem;
+            /* color: grey;*/
+           }
+
+           .form-verif i.tiny {
+               font-size: 1.2rem;
+               line-height: 1.2em;
+           }
+
+           .dataTables_filter{
+               display:none;
+           }
+
+         .dataTables_wrapper .dataTables_paginate .paginate_button {
+               border-radius: 3px;
+               text-align: center;
+               vertical-align: middle;
+               height: 30px;
+               margin-left: 4px;
+               display: inline-block;
+               font-size: 1.2rem;
+               padding: 0 10px;
+               line-height: 30px;
+               box-shadow:none;
+           }
+
+           .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+               background: #eee;
+               color: #555 !important;
+               border-color: #eee;
+               box-shadow:none;
+           }
+
+           .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+                   background: #ee6e73;
+                   border: none;
+                   color: white !important;
+               }
+           .dataTables_wrapper .dataTables_paginate .paginate_button.next,.dataTables_wrapper .dataTables_paginate .paginate_button.previous{
+               padding:3px;
+           }
+
+
+
+           table.dataTable tr td.details-control{
+
+               /*background: #fff;*/
+               /*! font-size: 48px; */
+               font-weight: 400;
+               color: #62b0df;
+               position: relative;
+               transition: all 0.5s ease 0s;
+           }
+
+           table.dataTable td.details-control:before,
+           table.dataTable .parent td.details-control:before{
+               font-family: 'Material Icons';
+               content: '\e145';
+               font-size: 30px;
+               color: #62b0df;
+               position: absolute;
+               top: 16px;
+               right: 0px;
+               transform: rotate(135deg);
+               transition: all 0.3s ease 0s;
+           }
+           table.dataTable td.details-control:before{
+               color: #dcdcdc;
+               transform: rotate(0);
+               font-size: 18px;
+               right: 6px;
+           }
+           table.dataTable td.details-control:after{
+               content: "";
+               width: 0px;
+               height: 100%;
+               background: transparent;
+               position: absolute;
+               top: 0;
+               right: 55px;
+           }
+
+           table.dataTable.hover tbody tr:hover td.details-control:before,
+           table.dataTable.display tbody tr:hover td.details-control:before {
+                 color: #62b0df !important;
+           }
+
+           .filter-tab{
+               display:none;
+           }
+
+           #chips{
+             margin-left:10px;
+             margin-top:-2px;
+             width:99%;
+           }
+           #chips .chip i {
+             width: auto;
+             margin-right:5px;
+             padding: 0;
+             float:left;
+           }
+
+           #chips .chip {
+               text-overflow: ellipsis;
+               overflow: hidden;
+               word-break: normal;
+               max-width: 30%;
+               white-space: nowrap;
+               min-width: 80px;
+           }
+
+           .help-tab h3{
+               font-weight: 700;
+           }
+
+     </style>
+
+     <script src="/zem04/user/themes/Strategie_ZEM/js/dataTable/datatables.js"></script>
+    {% include 'partials/metadata.html.twig' %}
+    <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+{% endblock head %}
+
+{% block stylesheets %}
+    {% do assets.addCss('http://yui.yahooapis.com/pure/0.6.0/pure-min.css', 100) %}
+    {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', 99) %}
+    {% do assets.addCss('theme://css/custom.css', 98) %}
+{% endblock %}
+
+{% block javascripts %}
+    {% do assets.addJs('jquery', 100) %}
+{% endblock %}
+
+{% block assets deferred %}
+    {{ assets.css()|raw }}
+    {{ assets.js()|raw }}
+{% endblock %}
+
+</head>
+<body id="top" class="{{ page.header.body_classes }}">
+
+{% block header %}
+<div class="layout-container">
+    <!-- HEADER -->
+    <div class="header">
+<a href="strategie">
+      <div class="header__title">
+          Strategie
+          <div class="sidebar__subtitle">
+          Zentrum elektronische Medien
+          </div>
+      </div>
+  </a>
+<div class="header__burger header__burger--visible">
+      <i></i>
+      <i></i>
+      <i></i>
+  </div>
+  <div class="header__close">
+      ×
+  </div>
+</div>
+  <!-- end HEADER -->
+
+  <!-- SIDEBAR -->
+    <div class="sidebar">
+      <a href="strategie">
+          <div class="header__title hide-on-small-only">
+              Strategie
+              <div class="sidebar__subtitle">
+              Zentrum elektronische Medien
+              </div>
+          </div>
+      </a>
+      <div class="region region-primary-menu">
+      <div role="navigation" aria-labelledby="block-mainnavigationde-menu" id="block-mainnavigationde" class="block block-menu navigation menu--main-navigation-de">
+
+           <!--<h2 class="visually-hidden" id="block-mainnavigationde-menu">Main navigation DE</h2>-->
+                {% include 'partials/sidebar.html.twig' %}
+          </div>
+          <!-- <div class="language-switcher-language-url contextual-region block block-language block-language-blocklanguage-interface" id="block-languageswitcher" role="navigation">
+
+            <ul class="links mt-5">
+            <li hreflang="de"
+            class="de is-active">
+            <a href="aktionsplan_action_id=.html"
+              class="language-link  is-active"
+              title="Deutsch"
+              hreflang="de">
+                de
+              </a>
+            </li>
+            </ul>
+
+          </div>-->
+          </div>
+
+          <div class="sidebar__logo ">
+            <!-- <ul class="menu" style="font-size: .66em;">
+              <li class="menu-item"><a target="_blank" href="https://www.facebook.com/digitaldialogCH/" class="social"><i class="fa fa-facebook-square fa-fw"></i> digitaldialogCH</a></li>
+              <li class="menu-item"><a target="_blank" href="https://twitter.com/digitaldialogCH" class="social"><i class="fa fa-twitter-square fa-fw"></i> @digitaldialogCH</a></li>
+            </ul>
+
+
+            <p>&nbsp;</p>-->
+              <img class="img-responsive" alt="" src="/zem04/user/themes/Strategie_ZEM/images/swiss_confederation.svg" height="39" width="157">
+          </div>
+        </div>
+          <!-- end SIDEBAR -->
+{% endblock %}
+
+{% set client_side_validation = form.client_side_validation is not null ? form.client_side_validation : config.plugins.form.client_side_validation|default(true) %}
+{% set inline_errors = form.inline_errors is not null ? form.inline_errors : config.plugins.form.inline_errors(false) %}
+{% set user = grav.user %}
+
+{% if user.authenticated and user.authorized %}
+
+{% block body %}
+    <section id="body">
+        <div class="wrapper padding">
+          <main role="main">
+             <div class="layout-content">
+                <div class="region region-content">
+        {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
+      </div>
+  </section>
+{% endblock %}
+
+{% elseif page.template == 'login' or show_login_form %}
+  <section id="grav-login">
+
+          {% if user.authenticated and user.authorized %}
+              <h4>{{ 'PLUGIN_LOGIN.WELCOME'|t }} <strong>{{ user.fullname ?: user.username }}</strong></h4>
+              <hr>
+              <a class="button logout" href="{{ uri.addNonce(base_url_relative ~ uri.path ~ '/task' ~ config.system.param_sep ~ 'login.logout', 'logout-form', 'logout-nonce')|e }}">{{ 'PLUGIN_LOGIN.BTN_LOGOUT'|t }}</a>
+
+          {% elseif user.authenticated and user.twofa_enabled %}
+              {% include 'partials/login-twofa.html.twig' %}
+
+          {% else %}
+              {{ content|raw }}
+
+              {# NEW WAY OF INCLUDING 3RD PARTY LOGIN OPTIONS #}
+              {% for template in grav.login.getProviderLoginTemplates %}
+                  {% include template %}
+              {% endfor %}
+
+              <form method="post" action="{{ (base_url_relative ~ uri.path)|e }}" class="{{ form_outer_classes }} login-form">
+
+                  {# OLD WAY OF INCLUDING 3RD PARTY LOGIN OPTIONS #}
+                  {% if grav.twig.plugins_hooked_loginPage %}
+                      {% for label in grav.twig.plugins_hooked_loginPage %}
+                          {% include label %}
+                      {% endfor %}
+                  {% endif %}
+
+                  {% for field in form.fields %}
+                      {% set value = field.name == 'username' ? username : '' %}
+                      {% if field.type %}
+                          {% include ["forms/fields/#{field.type}/#{field.type}.html.twig", 'forms/fields/text/text.html.twig'] %}
+                      {% endif %}
+                  {% endfor %}
+
+                  <div class="{{ form_button_outer_classes ?: 'form-actions secondary-accent' }}">
+                      {% if config.plugins.login.rememberme.enabled and page.header.form.login.rememberme ?? true %}
+                          <div class="form-data rememberme" data-grav-default="null" data-grav-disabled="true" data-grav-field="checkbox">
+                              <div class="form-input-wrapper">
+                                  <input type="checkbox" value="1" name="rememberme" id="#rememberme">
+                                  <label class="inline" for="#rememberme" title="{{ 'PLUGIN_LOGIN.REMEMBER_ME_HELP'|t }}">{{ 'PLUGIN_LOGIN.REMEMBER_ME'|t }}</label>
+                              </div>
+                          </div>
+                      {% endif %}
+
+                      <!-- {% if page.header.form.login.forgot_button ?? true %}
+                      <a class="{{ form_button_classes ?: 'button secondary' }}" href="{{ base_url_relative }}{{ config.plugins.login.route_forgot }}"><i class="fa fa-exclamation-circle"></i> {{ 'PLUGIN_LOGIN.BTN_FORGOT'|t }}</a>
+                      {% endif %} -->
+
+                      <button class="{{ form_button_classes ?: 'button primary' }}" type="submit"  name="task" value="login.login"><i class="fa fa-sign-in"></i> {{ 'PLUGIN_LOGIN.BTN_LOGIN'|t }}</button>
+                  </div>
+
+                  {{ nonce_field('login-form', 'login-form-nonce')|raw }}
+              </form>
+
+          {% endif %}
+
+
+  </section>
+
+  {% else %}
+<script>
+  window.location.href = "/zem04/login";
+</script>
+{% endif %}
+
+{% block footer %}
+<!-- FOOTER -->
+  <div class="footer">
+  <div class="footer__container">
+
+</div>
+  <div class="footer__address">
+      <p>
+          <b>
+              Bundesamt für Verteidigung, Bevölkerungsschutz und Sport<br />
+              Zentrum elektronische Medien ZEM
+          </b>
+      </p>
+      <p>
+         Stauffacherstrasse 65<br>
+         3001 Bern
+      </p>
+      <p>
+          +41 (0)58 464 65 00<br>
+          <a href="https://www.zem.ch">www.zem.ch</a>
+      </p>
+  </div>
+
+  {% if config.plugins.login.enabled and grav.user.username %}
+    <i class="fa fa-lock"></i> {% include 'partials/login-status.html.twig' %}
+{% endif %}
+
+</div>
+  <!-- end FOOTER -->
+
+</div>
+{% endblock %}
+
+{% block bottom %}
+    {{ assets.js('bottom')|raw }}
+
+    	    <script src="/zem04/user/themes/Strategie_ZEM/js/materialize.min.js"></script>
+           <script src="/zem04/user/themes/Strategie_ZEM/js/dataTable/datatables.js"></script>
+
+
+
+                <!--[-[+oneOrAll:isnot=`one`:then=`[-[$tplActionplanAllActionsScriptsV2]]`:else=``]]-->
+        <script>
+
+        $(document).ready(function() {
+
+          $('.header__burger').click(function(){
+            $('.sidebar').addClass("sidebar--visible");
+            $(this).removeClass("header__burger--visible");
+            $('.header__close').addClass("header__close--visible");
+          });
+
+          $('.header__close').click(function(){
+            $('.sidebar').removeClass("sidebar--visible");
+            $(this).removeClass("header__close--visible");
+            $('.header__burger').addClass("header__burger--visible");
+          });
+
+            $('.tabs').tabs();
+            $('.dropdown-trigger').dropdown({constrainWidth: false, coverTrigger:false, hover: false});
+           // $('select').formSelect();
+            $('.scrollspy').scrollSpy({scrollOffset:50});
+            //$('.collapsible').collapsible();
+            // $('.sidenav').sidenav();
+
+
+
+            var table = $('#actionplanTable').DataTable( {
+                "ajax": "/zem4/assets/data/actionplan/actionplan-json-de.json",
+                "language": {
+                    "url": "/zem4/assets/js/dataTable/locale/de.json"
+                },
+                order: [ [7, 'asc'], [15,'asc'], [14,'asc'] ,[4,'asc']],
+                orderFixed: [ [ 3 , 'asc'], [4,'asc'] ],
+                //"searching":   false,
+                //"ordering": false,
+                lengthChange: false,
+                rowGroup: {
+                    startRender: function ( rows, group ) {
+                        return group +' ('+rows.count()+')';
+                    },
+                    endRender: function ( rows, group ) {
+                        return '&nbsp;';
+                        // return group +' ('+rows.count()+')';
+                    },
+                    dataSrc: ['af_title','go_title'],
+                    emptyDataGroup: '---'
+                },
+                initComplete: function () {
+                    var seachColumns = [1,2,7];
+
+                    for(i=0;i<seachColumns.length;i++){
+                        var col = seachColumns[i];
+                        var column = this.api().column(col);
+
+                        var select = $('#select_filter_'+col);
+                        column.data().unique().sort().each( function ( d, j ) {
+                            if(d!=''){
+                                select.append( '<option value="'+d+'">'+d+'</option>' );
+                            }
+                        } );
+                        select.formSelect();
+                    }
+                    this.show();
+                    $('#loadingDataTable').hide();
+                    console.log('finito ready');
+
+                },
+                columns: [
+                    { "class":"notsmall0","data":"id"},
+                    { "class":"notsmall1","data":"af_title"},
+                    { "class":"notsmall2","data":"go_title"},
+                    { "class":"notsmall3","data":"actionfield"},
+                    { "class":"notsmall4","data":"nr"},
+                    { "class":"notsmall5 title","data":"title"},
+                    { "class":"notsmall6","data":"desc"},
+                    { "class":"td10 small","data":"status"},
+                    { "class":"notsmall8","data":"start"},
+                    { "class":"td10 small","data":"end"},
+                    { "class":"td5 small","data":"groups"},
+                    { "class":"notsmall11","data":"dept_links", "defaultContent": "No deptartement"},
+                    { "class":"notsmall12","data":"resp_links"},
+                    { "class":"notsmall13","data":"partners_links"},
+                    { "class":"notsmall14","data":"end_q_full"},
+                    { "class":"notsmall15","data":"end_y"},
+
+                    {
+                        "class":          "td5 details-control",
+                        "orderable":      false,
+                        "data":           null,
+                        "defaultContent": ""
+                    }
+                ],
+                columnDefs: [ {
+                    className: 'control',
+                    orderable: false,
+                    visible: false,
+                    targets:   0
+                }/*, {
+                render: function (data, type, row) {
+                    var result = '';
+                   if(row.form_verif === 1){
+                       result ='<span data-badge-caption="'+row.form_verif_user_actions+'" class="new badge blue-light accent-3 right"></span>';
+                   }else if(row.form_verif >= 1){
+                        result ='<i class="tiny material-icons light-blue-text right" title="'+row.form_verif_user_actions+'">check_circle</i>';
+                   }else if(row.action_id === 'new'){
+                        result ='<i class="tiny material-icons red-text right" title="new">fiber_new</i>';
+
+                   }else if(row.form_action === 'form'){
+                        result ='<i class="tiny material-icons light-blue-text right" title="edit">edit</i>';
+                   }
+                   if(row.published == 0){
+                       result += ' <i class="tiny material-icons right" title="not published">visibility_off</i>';
+                   }
+                    return result;
+                    },
+                    targets: 18,
+                }*/],
+
+                pageLength: -1,
+                fixedHeader: false,
+                responsive: {
+                    details: {
+                        type: 'column',
+                        target: 'tr',
+                        renderer: function ( api, rowIdx, columns ) {
+
+                            d = table.row(rowIdx).data() || {};
+
+                            var groups = {int: "" , ext: "extern" }
+                            //console.log('here is the data', d);
+
+                            var out = '';
+                            out += '<div class="row">';
+                            out += '<div class="col s12 l10 no-padding">';
+                                out += '<p>'+d.desc+'</p>';
+                                // out += '<p>'+d.status_desc+'</p>';
+                                out += '<table class="inner-table">';
+                                    out += '<tr><td class="small">Status</td><td>'+d.status+'</td></tr>';
+                                    out += d.start ? '<tr><td class="small">Beginn</td><td>'+d.start+'</td></tr>':'';
+                                    out += d.end ? '<tr><td class="small">Ende</td><td>'+d.end+'</td></tr>': '';
+                                    out += '<tr><td colspan="2"></td></tr>';
+                                    out += '<tr><td class="grey-text text-darken-2" colspan="2">Organisation</td></tr>';
+                                    out += groups[d.groups] ? '<tr><td class="small">'+groups[d.groups]+'</td><td></td></tr>':'';
+                                    out += d.dept_links ? '<tr><td class="small">Departement</td><td>'+d.dept_links+'</td></tr>' :'';
+                                    out += '<tr><td class="small">Federführend</td><td>'+d.resp_links+'</td></tr>';
+                                    out += d.partners_links ? '<tr><td class="small">Partner</td><td>'+d.partners_links+'</td></tr>':'';
+                                    out += '<tr><td colspan="2"></td></tr>';
+                                    out += '<tr><td class="grey-text text-darken-2" colspan="2">Strategie</td></tr>';
+                                    out += '<tr><td class="small">Aktionsfeld</td><td><a href="'+d.af_url+'" target="_blank">'+d.af_title+'</a></td></tr>';
+                                    out += '<tr><td class="small">Ziel</td><td><a href="'+d.go_url+'" target="_blank">'+d.go_title+'</a></td></tr>';
+                                    out += d.website ? '<tr><td class="small">Website</td><td><a href="'+d.website+'" target="_blank">'+d.website+'</a></td></tr>':'';
+                                out += '</table></div>';
+
+
+
+                        out += '</div>';
+
+
+
+                            return out ?
+                                $('<div class="inner-div-table"/>').append( out ) :
+                                false;
+                        }
+                    }
+                }
+            } );
+            // Change the fixed ordering when the data source is updated
+            table.on( 'rowgroup-datasrc', function ( e, dt, val ) {
+
+                var cols = dt.columns().dataSrc();
+
+                //console.log('on datasrc change', val, cols);
+                // val[0]
+
+                if(Array.isArray(val)){
+                    if(val[0]=='af_title' && val[1]=='go_title') {
+                        table.order.fixed( {pre:[ [3, 'asc'], [ 4, 'asc' ]  ]} ).draw();
+                    }else{
+                        table.order.fixed( {pre:[ [cols.indexOf(val[0]), 'asc'], [ cols.indexOf(val[1]) , 'asc' ]  ]} ).draw();
+                    }
+                }else{
+                    table.order.fixed( {pre:[ [cols.indexOf(val), 'asc']]} ).draw();
+                }
+
+
+
+                //if(val[1]=='go_title') val[1] = 'nr';
+
+               // table.order.fixed( {pre:[ [cols.indexOf(val[0]), 'asc'], [ cols.indexOf(val[1]) , 'asc' ]  ]} ).draw();
+
+
+            } );
+            /*
+            */
+
+            $('a.group-by').on( 'click', function (e) {
+                e.preventDefault();
+                var col = $(this).data('column');
+                var col_arr = col.split(",");
+                var cols = table.columns().dataSrc();
+                if(cols[col_arr[0]] === cols[col_arr[1]]){
+
+                 console.log('clicked group by',  cols[col_arr[0]] , cols[col_arr[1]]);
+                    table.rowGroup().dataSrc(cols[col_arr[0] ]);
+
+                }else{
+                    table.rowGroup().dataSrc([ cols[col_arr[0] ] , cols[col_arr[1] ] ]);
+
+                }
+
+
+
+
+
+            } );
+
+
+
+            $('a.page-length').on( 'click', function (e) {
+                e.preventDefault();
+                var pageLength = $(this).data('page-length')
+                table.page.len( pageLength ).draw();
+            } );
+
+
+            $('a.page-filters').on( 'click', function (e) {
+                e.preventDefault();
+                var target = $(this).attr('href');
+
+                $('.filter-tab').hide();
+                if(target != '#close') {
+                    $(target).show();
+                }else{
+                    table.search('').columns().search('').draw();
+                    $('#chips').empty();
+                }
+            } );
+
+
+
+            $('a.btn.views').on( 'click', function (e) {
+                e.preventDefault();
+                var view = $(this).attr('data-view');
+                switch(view){
+                    case 'all':
+                        table.column( 14 ).search('').page.len( 10 );
+                        table.rowGroup().dataSrc(['af_title','go_title']);
+                        break;
+
+                    case 'user':
+                        table.column( 14 ).search('^'+0+'$', true, false ).page.len( -1 );
+                        table.rowGroup().dataSrc([ 'form_verif_status', 'form_verif_user_actions']);
+                        break;
+                }
+
+
+
+            } );
+
+
+            function filterColumn ( i ) {
+                var val = $('#select_filter_'+i).val();
+                table.column( i ).search(val ? '^'+val+'$' : '', true, false ).page.len( -1 ).draw();
+
+                var filtered = $.map(table.columns().search(), function(val, i){
+                    return {tag: val.replace(/[\^\$]/g,'')};
+                })
+                var chips = $('#chips').empty();
+                $.each(filtered, function(i){
+                    if(this.tag!=''){
+                        chips.append('<div class="chip grey lighten-4"><i class="close material-icons" data-column="'+i+'">close</i>'+this.tag+'</div>')
+                    }
+                })
+
+            }
+
+
+
+            $('#text_filter').on( 'keyup click', function () {
+                $('#actionplanTable').DataTable().search($(this).val(),false,true).draw();
+            } );
+
+            $('select.select_filter').on( 'change', function () {
+                filterColumn( $(this).attr('data-column') );
+            } );
+
+
+
+            $('#chips').on('click', '.chip .close', function() {
+                var col = $(this).attr('data-column');
+                var filter = $('select#select_filter_'+col);
+                filter.formSelect('destroy');
+                filter.val('').change();
+                filter.formSelect();
+            });
+
+
+        } );
+
+        </script>
+
+
+
+        <script>
+    		    function contentButton(){
+    			    $('.header__burger').click(function(){
+    				    $('.sidebar').addClass("sidebar--visible");
+    				    $(this).removeClass("header__burger--visible");
+    				    $('.header__close').addClass("header__close--visible");
+    			    });
+
+    			    $('.header__close').click(function(){
+    				    $('.sidebar').removeClass("sidebar--visible");
+    				    $(this).removeClass("header__close--visible");
+    				    $('.header__burger').addClass("header__burger--visible");
+    			    });
+
+    			 }
+
+           AOS.init();
+
+    		    $(document).ready(function (){
+
+    		        contentButton();
+    		        $("#dropdown-trigger-menu").dropdown({
+                        coverTrigger: false,
+                        constrainWidth: false,
+                        alignment: 'right',
+                        closeOnClick: false
+                    });
+    		    })
+    		</script>
+
+{% endblock %}
+
+</body>
+</html>
