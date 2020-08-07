@@ -614,6 +614,11 @@ ul.menu a.is-active {
     font-size: 14px;
     padding: 60px 15px
 }
+.footer.login {
+  position: absolute;
+  bottom: 0;
+  padding-right: 70px
+}
 
 @media (min-width:768px) and (max-width:991px) {
     .footer {
@@ -626,13 +631,14 @@ ul.menu a.is-active {
     .footer {
         padding-left: 30px;
         padding-right: 30px
+
     }
 }
 
 @media (min-width:1200px) {
     .footer {
         padding-left: 70px;
-        padding-right: 70px
+        width: 100%;
     }
 }
 
@@ -662,7 +668,17 @@ ul.menu a.is-active {
 .footer__menu {
     margin-bottom: 60px
 }
-
+.logged-in-user {
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 120px;
+    position: fixed;
+}
+.logged-in-user i {
+  margin-right: 5px;
+}
 .footer__menu ul,
 .hero {
     display: -webkit-box;
@@ -1120,6 +1136,10 @@ ul.menu a.is-active {
         height: 225px;
         margin-left: -30px
     }
+    .logged-in-user {
+        font-size: 12px;
+        flex-direction: column;
+    }
 }
 
 @media (max-width:767px) {
@@ -1127,6 +1147,21 @@ ul.menu a.is-active {
         width: calc(100% + 30px);
         margin-left: -15px
     }
+    .logged-in-user {
+        font-size: 14px;
+        flex-direction: row;
+    }
+    .sidebar .menu-item .is-active:before, .sidebar .menu-item--active-trail a:before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    margin-top: -2px;
+    background-color: #ff616b;
+    opacity: .18;
+    height: 4px;
+    width: 15px;
+  }
 }
 
 @media (min-width:992px) {

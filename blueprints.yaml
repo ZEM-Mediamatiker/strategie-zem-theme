@@ -10,6 +10,7 @@ author:
 homepage: https://www.zem.ch
 keywords: minimalist, theme, modern, fast, responsive, html5, css3, zem, strategie
 license: MIT
+readme: https://github.com/ZEM-Mediamatiker/strategie-zem-theme/blob/master/README.md
 
 form:
   validation: loose

@@ -449,6 +449,12 @@
           </div>-->
           </div>
 
+          {% if config.plugins.login.enabled and grav.user.username %}
+          <div class="logged-in-user">
+            <i class="fa fa-lock"></i> {% include 'partials/login-status.html.twig' %}
+          </div>
+          {% endif %}
+
           <div class="sidebar__logo ">
             <!-- <ul class="menu" style="font-size: .66em;">
               <li class="menu-item"><a target="_blank" href="https://www.facebook.com/digitaldialogCH/" class="social"><i class="fa fa-facebook-square fa-fw"></i> digitaldialogCH</a></li>
@@ -551,7 +557,7 @@
 
 {% block footer %}
 <!-- FOOTER -->
-  <div class="footer">
+  <div class="footer {% if page.template == 'login' or show_login_form %}login {% endif %}">
   <div class="footer__container">
 
 </div>
@@ -571,10 +577,6 @@
           <a href="https://www.zem.ch">www.zem.ch</a>
       </p>
   </div>
-
-  {% if config.plugins.login.enabled and grav.user.username %}
-    <i class="fa fa-lock"></i> {% include 'partials/login-status.html.twig' %}
-{% endif %}
 
 </div>
   <!-- end FOOTER -->
