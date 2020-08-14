@@ -62,6 +62,7 @@
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
        <script src="https://use.fontawesome.com/e4d9a6b17e.js"></script>
+       <link href="/zem04/user/themes/Strategie_ZEM/fonts/fontawesome/css/all.css" rel="stylesheet">
 
        <!--[if lte IE 8]>
        <script src="/sites/default/files/js/js_VtafjXmRvoUgAzqzYTA3Wrjkx9wcWhjP0G4ZnnqRamA.js"></script>
@@ -393,6 +394,10 @@
 </head>
 <body id="top" class="{{ page.header.body_classes }}">
 
+		<noscript>
+			<div style="background:red; min-height:80px; color:white; padding: 10px 50px; z-index:1000; font-weight: bold; position:absolute; top:0; left:0; width:100%;">Activate Javascript</div>
+		</noscript>
+
 {% block header %}
 <div class="layout-container">
     <!-- HEADER -->
@@ -481,7 +486,9 @@
           <main role="main">
              <div class="layout-content">
                 <div class="region region-content">
-        {% block content %}{% endblock %}
+
+                    {% block content %}{% endblock %}
+
                 </div>
             </div>
         </main>
@@ -597,16 +604,57 @@
 
         $(document).ready(function() {
 
+          $('h3:contains("Filtern")').addClass('margin-60-top');
+
+          $(".button-filter-reset").click(function() {
+            $(".button-filter").prop('selectedIndex',0);
+            $(".accordion-wrapper div").css("display", "block");
+          });
+
+          $(".button-filter").change(function() {
+            $name = $(this).attr('name');
+            $count = $(".accordion-wrapper div article ul").length;
+            $ivalue = $(".button-filter[name='importance']").val();
+            $uvalue = $(".button-filter[name='urgent']").val();
+            $cvalue = $(".button-filter[name='category']").val();
+            if($ivalue == 0 && $uvalue == 0 && $cvalue == 0) {
+              $(".accordion-wrapper div").css("display", "block");
+            } else {
+              $(".accordion-wrapper div").css("display", "none");
+              for($i = 0; $count > $i; $i++) {
+                $(".accordion-wrapper div article ul:nth-child(" + $i + ")").each(function() {
+                  if(($ivalue != 0 && $uvalue != 0 && $cvalue == 0) || ($ivalue == 0 && $uvalue != 0 && $cvalue != 0) || ($ivalue != 0 && $uvalue == 0 && $cvalue != 0)) {
+                    if(($(this).find("pre[name='importance']").is(':contains(' + ($ivalue) + ')') && $(this).find("pre[name='urgent']").is(':contains(' + $uvalue + ')')) ||
+                    ($(this).find("pre[name='urgent']").is(':contains(' + $uvalue + ')') && $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')')) ||
+                    ($(this).find("pre[name='importance']").is(':contains(' + ($ivalue) + ')') && $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')'))) {
+                      $(this).parent().parent().css("display", "block");
+                    }
+                  } else if(($ivalue != 0 && $uvalue == 0 && $cvalue == 0) || ($ivalue == 0 && $uvalue != 0 && $cvalue == 0) || ($ivalue == 0 && $uvalue == 0 && $cvalue != 0)) {
+                    if($(this).find("pre[name='importance']").is(':contains(' + ($ivalue) + ')') || $(this).find("pre[name='urgent']").is(':contains(' + $uvalue + ')') || $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')')) {
+                      $(this).parent().parent().css("display", "block");
+                    }
+                  } else {
+                    if($(this).find("pre[name='importance']").is(':contains(' + ($ivalue) + ')') && $(this).find("pre[name='urgent']").is(':contains(' + $uvalue + ')') && $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')')) {
+                      $(this).parent().parent().css("display", "block");
+                    }
+                  }
+                });
+              }
+            }
+          });
+
           $('.header__burger').click(function(){
             $('.sidebar').addClass("sidebar--visible");
             $(this).removeClass("header__burger--visible");
             $('.header__close').addClass("header__close--visible");
+            $('html, body').css('overflow', 'hidden');
           });
 
           $('.header__close').click(function(){
             $('.sidebar').removeClass("sidebar--visible");
             $(this).removeClass("header__close--visible");
             $('.header__burger').addClass("header__burger--visible");
+            $('html, body').css('overflow', '');
           });
 
             $('.tabs').tabs();
