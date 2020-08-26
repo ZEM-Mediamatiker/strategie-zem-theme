@@ -689,7 +689,7 @@
           });
 
           /* SORT BY DATE (todo: pre's und div's richtig anordnen) */
-          $(".button-filter[name='date']").change(function() {
+          $(".button-filter[name='date']").change(function(e) {
             $dvalue = $(".button-filter[name='date']").val();
             $pres = $("pre[name='date']").length;
             var dates = [];
@@ -700,7 +700,7 @@
               });
 
             if($dvalue == 1) {
-
+              $('.sorted').remove();
               function SortByDateUp(a, b) {
                  var amyDate = a.date.split(".");
                  var aNewDate= new Date(amyDate[1]+","+amyDate[0]+","+amyDate[2]);
@@ -710,20 +710,17 @@
               }
               var sorteddates = datecontainers.sort(SortByDateUp);
 
-
-              console.log(sorteddates);
-
               $(".accordion-wrapper div").css("display", "none");
               $("h2, .table-header, .table-header-title").css("display", "none");
 
               for($i = 0; $i < $pres; $i++) {
-                $content = datecontainers[$i].content;
+                $content = sorteddates[$i].content;
                 $("h2:first").after($content);
               }
-              datecontainers = [];
+
 
             } else if($dvalue == 2) {
-
+              $('.sorted').remove();
               function SortByDateUp(a, b) {
                  var amyDate = a.date.split(".");
                  var aNewDate= new Date(amyDate[1]+","+amyDate[0]+","+amyDate[2]);
@@ -733,23 +730,19 @@
               }
               var sorteddates = datecontainers.sort(SortByDateUp);
 
-
-              console.log(sorteddates);
-
               $(".accordion-wrapper div").css("display", "none");
               $("h2, .table-header, .table-header-title").css("display", "none");
 
               for($i = 0; $i < $pres; $i++) {
-                $content = datecontainers[$i].content;
+                $content = sorteddates[$i].content;
                 $("h2:first").after($content);
               }
-              datecontainers = [];
 
             } else {
               $(".accordion-wrapper div").css("display", "block");
               $("h2, .table-header, .table-header-title").css("display", "block");
               $('.sorted').remove();
-              datecontainers = [];
+              sorteddates = [];
             }
 
           });
