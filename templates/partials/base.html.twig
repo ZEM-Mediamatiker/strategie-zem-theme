@@ -570,10 +570,10 @@
 </div>
   <div class="footer__address">
       <p>
-          <b>
+          <strong>
               Bundesamt für Verteidigung, Bevölkerungsschutz und Sport<br />
               Zentrum elektronische Medien ZEM
-          </b>
+          </strong>
       </p>
       <p>
          Stauffacherstrasse 65<br>
@@ -609,6 +609,14 @@
           $(".button-filter-reset").click(function() {
             $(".button-filter").prop('selectedIndex',0);
             $(".accordion-wrapper div").css("display", "block");
+            $(".accordion-wrapper div").removeClass("a-invisible");
+            $(".accordion-wrapper div").addClass("a-visible");
+            $(".accordion-wrapper div").css("display", "block");
+            $("h2, .table-header, .table-header-title").css("display", "block");
+            $('.sorted').remove();
+            $('.nothing-found').remove();
+            $(".button-filter").prop('disabled', false);
+            $(".button-filter").css("background", "rgba(0, 0, 0, 0.05)");
           });
 
           $(".button-filter").change(function() {
@@ -617,10 +625,30 @@
             $ivalue = $(".button-filter[name='importance']").val();
             $uvalue = $(".button-filter[name='urgent']").val();
             $cvalue = $(".button-filter[name='category']").val();
-            if($ivalue == 0 && $uvalue == 0 && $cvalue == 0) {
+            $dvalue = $(".button-filter[name='date']").val();
+            if($(this).val() == 0) {
+              $(this).css("background", "rgba(0, 0, 0, 0.05)");
+            } else {
+              $(this).css("background", "#cde2ef");
+            }
+            if($name == "date") {
+              $(".button-filter").prop('disabled', true);
+              $(".button-filter[name='date']").prop('disabled', false);
+            } else {
+              $(".button-filter").prop('disabled', false);
+              $(".button-filter[name='date']").prop('disabled', true);
+            }
+
+            $('.nothing-found').remove();
+            if($ivalue == 0 && $uvalue == 0 && $cvalue == 0 && $dvalue == 0 ) {
               $(".accordion-wrapper div").css("display", "block");
+              $(".accordion-wrapper div").removeClass("a-invisible");
+              $(".accordion-wrapper div").addClass("a-visible");
+              $(".button-filter").prop('disabled', false);
             } else {
               $(".accordion-wrapper div").css("display", "none");
+              $(".accordion-wrapper div").removeClass("a-visible");
+              $(".accordion-wrapper div").addClass("a-invisible");
               for($i = 0; $count > $i; $i++) {
                 $(".accordion-wrapper div article ul:nth-child(" + $i + ")").each(function() {
                   if(($ivalue != 0 && $uvalue != 0 && $cvalue == 0) || ($ivalue == 0 && $uvalue != 0 && $cvalue != 0) || ($ivalue != 0 && $uvalue == 0 && $cvalue != 0)) {
@@ -628,20 +656,104 @@
                     ($(this).find("pre[name='urgent']").is(':contains(' + $uvalue + ')') && $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')')) ||
                     ($(this).find("pre[name='importance']").is(':contains(' + ($ivalue) + ')') && $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')'))) {
                       $(this).parent().parent().css("display", "block");
+                      $(this).parent().parent().addClass("a-visible");
                     }
                   } else if(($ivalue != 0 && $uvalue == 0 && $cvalue == 0) || ($ivalue == 0 && $uvalue != 0 && $cvalue == 0) || ($ivalue == 0 && $uvalue == 0 && $cvalue != 0)) {
                     if($(this).find("pre[name='importance']").is(':contains(' + ($ivalue) + ')') || $(this).find("pre[name='urgent']").is(':contains(' + $uvalue + ')') || $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')')) {
                       $(this).parent().parent().css("display", "block");
+                      $(this).parent().parent().addClass("a-visible");
                     }
                   } else {
                     if($(this).find("pre[name='importance']").is(':contains(' + ($ivalue) + ')') && $(this).find("pre[name='urgent']").is(':contains(' + $uvalue + ')') && $(this).find("pre[name='category']").is(':contains(' + $cvalue + ')')) {
                       $(this).parent().parent().css("display", "block");
+                      $(this).parent().parent().addClass("a-visible");
                     }
                   }
                 });
               }
             }
+
+              /* DISPLAY - NO ENTRYS FOUND TO THIS CRITERIUMS */
+              $(".accordion-wrapper").each(function() {
+                $oldtext = $(this).find(".table-header").text();
+                $newdiv = $("<div class='nothing-found'>");
+                $cnt = "Konnte hier keine Einträge mit diesen Kriterien finden";
+                $newdiv.html($cnt);
+                if($name != "date") {
+                  if ( $(this).children(".a-visible").length == 0 ) {
+                    $(this).after($newdiv);
+                  }
+                }
+              });
+
           });
+
+          /* SORT BY DATE (todo: pre's und div's richtig anordnen) */
+          $(".button-filter[name='date']").change(function() {
+            $dvalue = $(".button-filter[name='date']").val();
+            $pres = $("pre[name='date']").length;
+            var dates = [];
+            var datecontainers = [];
+
+              $(".accordion-wrapper div").each(function() {
+                datecontainers.push({date: $(this).find("pre[name='date']").text(), content: " <div class='accordion-wrapper sorted'>" + $(this).html() + "</div>"});
+              });
+
+            if($dvalue == 1) {
+
+              function SortByDateUp(a, b) {
+                 var amyDate = a.date.split(".");
+                 var aNewDate= new Date(amyDate[1]+","+amyDate[0]+","+amyDate[2]);
+                 var bmyDate = b.date.split(".");
+                 var bNewDate= new Date(bmyDate[1]+","+bmyDate[0]+","+bmyDate[2]);
+                 return ((aNewDate > bNewDate) ? 1 : ((aNewDate < bNewDate) ? -1 : 0));
+              }
+              var sorteddates = datecontainers.sort(SortByDateUp);
+
+
+              console.log(sorteddates);
+
+              $(".accordion-wrapper div").css("display", "none");
+              $("h2, .table-header, .table-header-title").css("display", "none");
+
+              for($i = 0; $i < $pres; $i++) {
+                $content = datecontainers[$i].content;
+                $("h2:first").after($content);
+              }
+              datecontainers = [];
+
+            } else if($dvalue == 2) {
+
+              function SortByDateUp(a, b) {
+                 var amyDate = a.date.split(".");
+                 var aNewDate= new Date(amyDate[1]+","+amyDate[0]+","+amyDate[2]);
+                 var bmyDate = b.date.split(".");
+                 var bNewDate= new Date(bmyDate[1]+","+bmyDate[0]+","+bmyDate[2]);
+                 return ((aNewDate < bNewDate) ? 1 : ((aNewDate > bNewDate) ? -1 : 0));
+              }
+              var sorteddates = datecontainers.sort(SortByDateUp);
+
+
+              console.log(sorteddates);
+
+              $(".accordion-wrapper div").css("display", "none");
+              $("h2, .table-header, .table-header-title").css("display", "none");
+
+              for($i = 0; $i < $pres; $i++) {
+                $content = datecontainers[$i].content;
+                $("h2:first").after($content);
+              }
+              datecontainers = [];
+
+            } else {
+              $(".accordion-wrapper div").css("display", "block");
+              $("h2, .table-header, .table-header-title").css("display", "block");
+              $('.sorted').remove();
+              datecontainers = [];
+            }
+
+          });
+
 
           $('.header__burger').click(function(){
             $('.sidebar').addClass("sidebar--visible");
