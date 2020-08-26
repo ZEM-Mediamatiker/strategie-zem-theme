@@ -616,7 +616,7 @@
             $('.sorted').remove();
             $('.nothing-found').remove();
             $(".button-filter").prop('disabled', false);
-            $(".button-filter").css("background", "rgba(0, 0, 0, 0.05)");
+            $(".button-filter").removeClass("selected");
           });
 
           $(".button-filter").change(function() {
@@ -627,9 +627,9 @@
             $cvalue = $(".button-filter[name='category']").val();
             $dvalue = $(".button-filter[name='date']").val();
             if($(this).val() == 0) {
-              $(this).css("background", "rgba(0, 0, 0, 0.05)");
+              $(this).removeClass("selected");
             } else {
-              $(this).css("background", "#cde2ef");
+              $(this).addClass("selected");
             }
             if($name == "date") {
               $(".button-filter").prop('disabled', true);

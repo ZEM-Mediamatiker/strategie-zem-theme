@@ -944,6 +944,9 @@ h3.margin-60-top {
   cursor: pointer;
   transition: background .2s ease;
 }
+.button-filter.selected {
+  background: #cde2ef;
+}
 .button-filter-reset {
   cursor: pointer;
   padding: 4px 8px;
